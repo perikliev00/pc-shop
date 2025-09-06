@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ Final Test - PC SHOP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #e5e7eb;
+      padding: 20px;
+      margin: 0;
+    }
+    
+    .test-info {
+      background: #1e293b;
+      border: 1px solid #3b82f6;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 20px 0;
+      font-family: monospace;
+    }
+    
+    .test-button {
+      background: #ef4444;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 20px 0;
+    }
+  </style>
+  <link rel="stylesheet" href="/styles/faq.css" />
+</head>
+<body>
+  <h1>FAQ Final Test</h1>
+  <p>This page tests the FAQ functionality with separate CSS and JS files.</p>
+  
+  <button class="test-button" onclick="testFAQ()">Test FAQ Functionality</button>
+  
+  <div class="test-info" id="test-info">
+    <strong>Test Info:</strong> Page loaded. Click FAQ items to test.
+  </div>
+  
+  <div class="faq-item" data-index="0">
+    <div class="faq-question-container">
+      <h3 class="faq-question">
+        <span class="faq-text">Test Question 1: Does this work?</span>
+        <span class="faq-icon">+</span>
+      </h3>
+    </div>
+    <div class="faq-answer">
+      <p>This is a test answer to see if the FAQ functionality works with separate files.</p>
+    </div>
+  </div>
+  
+  <div class="faq-item" data-index="1">
+    <div class="faq-question-container">
+      <h3 class="faq-question">
+        <span class="faq-text">Test Question 2: Is JavaScript working?</span>
+        <span class="faq-icon">+</span>
+      </h3>
+    </div>
+    <div class="faq-answer">
+      <p>If you can see this answer, JavaScript is working correctly!</p>
+    </div>
+  </div>
+  
+  <div class="faq-item" data-index="2">
+    <div class="faq-question-container">
+      <h3 class="faq-question">
+        <span class="faq-text">Test Question 3: Are styles applied?</span>
+        <span class="faq-icon">+</span>
+      </h3>
+    </div>
+    <div class="faq-answer">
+      <p>If you see nice styling and animations, the CSS is working!</p>
+    </div>
+  </div>
+
+  <script>
+    function testFAQ() {
+      const testInfo = document.getElementById('test-info');
+      testInfo.innerHTML = '<strong>Test Info:</strong> FAQ test button clicked! Check console for details.';
+      console.log('FAQ test button clicked!');
+      
+      // Test if FAQ manager exists
+      if (window.faqManager) {
+        console.log('FAQ Manager found:', window.faqManager);
+        testInfo.innerHTML += '<br>©� FAQ Manager is loaded!';
+      } else {
+        console.error('FAQ Manager not found!');
+        testInfo.innerHTML += '<br>©� FAQ Manager not found!';
+      }
+    }
+  </script>
+  
+  <!-- Load FAQ JavaScript -->
+  <script src="/js/faq.js"></script>
+</body>
+</html>
+
+
+

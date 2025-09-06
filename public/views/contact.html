@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - PC SHOP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/styles/style.css" />
+  <link rel="stylesheet" href="/styles/theme.css" />
+  <link rel="stylesheet" href="/styles/mobile-navigation.css" />
+</head>
+<body>
+  <div class="body-wrapper">
+
+    <header class="header">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="2" y="2" width="36" height="28" rx="3" fill="none" stroke="#3b82f6" stroke-width="2"/>
+          <rect x="6" y="6" width="28" height="20" rx="1" fill="none" stroke="#3b82f6" stroke-width="1"/>
+          <rect x="16" y="32" width="8" height="4" fill="none" stroke="#3b82f6" stroke-width="2"/>
+          <circle cx="20" cy="20" r="6" fill="none" stroke="#3b82f6" stroke-width="2"/>
+          <path d="M18 18l4 4M22 18l-4 4" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-text">PCSHOP</span>
+      </div>
+      <nav class="nav" id="navbar">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/cart">Cart</a></li>
+          <li class="admin-link" style="display:none;"><a href="/admin-panel.html">Admin</a></li>
+          <li class="login-link"><a href="/login">Login</a></li>
+          <li class="signup-link"><a href="/register">Register</a></li>
+          <li class="logout-link" style="display:none;"><a href="#" id="logoutBtn">Logout</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="mobile-nav-toggle">☰</button>
+    </header>
+
+    <main class="main-content">
+      <section class="content-section">
+        <div class="container">
+          <div class="content-card">
+            <h2>Get in Touch</h2>
+            <p>Have questions about our products? Need help choosing components? Want to discuss a custom build? Our team of PC gaming experts is here to help!</p>
+            
+            <div class="contact-grid">
+              <div class="contact-info">
+                <h3>Contact Information</h3>
+                
+                <div class="contact-item">
+                  <h4>Customer Support</h4>
+                  <p><strong>Email:</strong> support@pcshop.com</p>
+                  <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                  <p><strong>Hours:</strong> Monday - Friday: 9 AM - 6 PM EST</p>
+                  <p><strong>Weekend:</strong> Saturday: 10 AM - 4 PM EST</p>
+                </div>
+                
+                <div class="contact-item">
+                  <h4>Sales & Orders</h4>
+                  <p><strong>Email:</strong> sales@pcshop.com</p>
+                  <p><strong>Phone:</strong> +1 (555) 123-4568</p>
+                  <p><strong>Hours:</strong> Monday - Friday: 8 AM - 8 PM EST</p>
+                </div>
+                
+                <div class="contact-item">
+                  <h4>Technical Support</h4>
+                  <p><strong>Email:</strong> tech@pcshop.com</p>
+                  <p><strong>Phone:</strong> +1 (555) 123-4569</p>
+                  <p><strong>Hours:</strong> Monday - Sunday: 24/7</p>
+                </div>
+                
+                <div class="contact-item">
+                  <h4>Business Inquiries</h4>
+                  <p><strong>Email:</strong> business@pcshop.com</p>
+                  <p><strong>Phone:</strong> +1 (555) 123-4570</p>
+                  <p><strong>Hours:</strong> Monday - Friday: 9 AM - 5 PM EST</p>
+                </div>
+              </div>
+              
+              <div class="contact-form">
+                <h3>Send us a Message</h3>
+                <form class="contact-form-inner" id="contactForm">
+                  <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <select id="subject" name="subject" required>
+                      <option value="">Select a topic</option>
+                      <option value="general">General Inquiry</option>
+                      <option value="product">Product Question</option>
+                      <option value="technical">Technical Support</option>
+                      <option value="order">Order Status</option>
+                      <option value="returns">Returns & Refunds</option>
+                      <option value="custom-build">Custom PC Build</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+                  </div>
+                  
+                  <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">Send Message</span>
+                    <span class="btn-loading" style="display: none;">Sending...</span>
+                  </button>
+                </form>
+                
+                <div id="formMessage" class="form-message" style="display: none;"></div>
+                </form>
+              </div>
+            </div>
+            
+            <h2>Other Ways to Connect</h2>
+            
+            <div class="social-contact">
+              <div class="social-item">
+                <h3>Live Chat</h3>
+                <p>Get instant help from our support team during business hours. Look for the chat widget in the bottom right corner of our website.</p>
+              </div>
+              
+              <div class="social-item">
+                <h3>Social Media</h3>
+                <p>Follow us on social media for the latest product updates, gaming news, and community discussions:</p>
+                <ul>
+                  <li><strong>Twitter:</strong> @pcshop_gaming</li>
+                  <li><strong>Facebook:</strong> PC SHOP Gaming</li>
+                  <li><strong>Instagram:</strong> @pcshop_official</li>
+                  <li><strong>YouTube:</strong> PC SHOP Gaming</li>
+                </ul>
+              </div>
+              
+              <div class="social-item">
+                <h3>Community Forum</h3>
+                <p>Join our community forum to connect with other PC builders, share your builds, and get advice from fellow enthusiasts.</p>
+                <p><a href="#" class="cta-link">Visit Community Forum</a></p>
+              </div>
+            </div>
+            
+            <h2>Frequently Asked Questions</h2>
+            <p>Before contacting us, you might find the answer to your question in our <a href="/faq" class="cta-link">FAQ section</a>.</p>
+            
+            <h2>Response Time</h2>
+            <p>We strive to respond to all inquiries within 24 hours during business days. For urgent technical issues, please call our technical support line for immediate assistance.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contact">
+      <div class="footer-inner">
+        <div class="footer-brand heading-primary heading-primary--sub">PC SHOP  Unleash Your Gaming Potential</div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Shop</h4>
+            <ul>
+              <li><a href="/graphics-card">Graphics Cards</a></li>
+              <li><a href="/cores">CPUs</a></li>
+              <li><a href="/ram">Memory</a></li>
+              <li><a href="/storage">Storage</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="/order-details">Checkout</a></li>
+              <li><a href="/cart">Cart</a></li>
+              <li><a href="/returns">Returns</a></li>
+              <li><a href="/faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/about">About</a></li>
+              <li><a href="/careers">Careers</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/privacy">Privacy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-social">
+          <a class="social-icon" href="#" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.33-1.77-1.33-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.31-5.47-1.33-5.47-5.92 0-1.31.47-2.38 1.23-3.22-.12-.31-.53-1.57.12-3.27 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.65 1.7.24 2.96.12 3.27.77.84 1.23 1.9 1.23 3.22 0 4.6-2.8 5.6-5.48 5.9.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .5Z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.27 4.27 0 0 0 1.87-2.36 8.53 8.53 0 0 1-2.7 1.03 4.26 4.26 0 0 0-7.26 3.89A12.09 12.09 0 0 1 3.15 4.9a4.25 4.25 0 0 0 1.32 5.68 4.22 4.22 0 0 1-1.93-.53v.05a4.26 4.26 0 0 0 3.42 4.18 4.28 4.28 0 0 1-1.92.07 4.26 4.26 0 0 0 3.97 2.95A8.54 8.54 0 0 1 2 19.55a12.06 12.06 0 0 0 6.53 1.92c7.84 0 12.13-6.49 12.13-12.13 0-.18-.01-.36-.02-.54A8.67 8.67 0 0 0 24 5.5a8.5 8.5 0 0 1-2.54.7Z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 8.5h4V24h-4V8.5Zm7 0h3.84v2.11h.05c.54-1.02 1.85-2.11 3.8-2.11 4.07 0 4.82 2.68 4.82 6.17V24h-4v-6.93c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.79-2.65 3.65V24h-4V8.5Z"/></svg>
+          </a>
+        </div>
+        <div class="footer-copy">© 2025 PC SHOP. All rights reserved.</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="/js/index.js"></script>
+  <script src="/js/mobile-navigation.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const btnLoading = submitBtn.querySelector('.btn-loading');
+      const formMessage = document.getElementById('formMessage');
+      
+      // Show loading state
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+      submitBtn.disabled = true;
+      
+      // Simulate form submission (replace with actual API call)
+      setTimeout(() => {
+        // Show success message
+        formMessage.innerHTML = `
+          <div class="success-message">
+            <h4>Message Sent Successfully!</h4>
+            <p>Thank you for contacting us. We'll get back to you within 24 hours.</p>
+          </div>
+        `;
+        formMessage.style.display = 'block';
+        formMessage.className = 'form-message success';
+        
+        // Reset form
+        document.getElementById('contactForm').reset();
+        
+        // Reset button state
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+        submitBtn.disabled = false;
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          formMessage.style.display = 'none';
+        }, 5000);
+      }, 1500);
+    });
+  </script>
+  <script>
+    // Authentication system
+    document.addEventListener('DOMContentLoaded', async () => {
+      const loginLink = document.querySelector('.login-link');
+      const signupLink = document.querySelector('.signup-link');
+      const logoutLink = document.querySelector('.logout-link');
+      const logoutBtn = document.getElementById('logoutBtn');
+
+      async function checkAuth() {
+        try {
+          const response = await fetch('/session-status');
+          const data = await response.json();
+          
+          if (data.isLoggedIn) {
+            loginLink.style.display = 'none';
+            signupLink.style.display = 'none';
+            logoutLink.style.display = 'block';
+            
+            if (data.email === 'admin@admin.com') {
+              const adminLink = document.querySelector('.admin-link');
+              if (adminLink) adminLink.style.display = 'block';
+            }
+          } else {
+            loginLink.style.display = 'block';
+            signupLink.style.display = 'block';
+            logoutLink.style.display = 'none';
+            const adminLink = document.querySelector('.admin-link');
+            if (adminLink) adminLink.style.display = 'none';
+          }
+        } catch (error) {
+          console.error('Error checking auth:', error);
+        }
+      }
+
+      checkAuth();
+
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          try {
+            await fetch('/logout', { method: 'POST' });
+            window.location.href = '/';
+          } catch (error) {
+            console.error('Error logging out:', error);
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+

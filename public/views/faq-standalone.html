@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ Standalone - PC SHOP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0b1020 0%, #1e293b 100%);
+      color: #e5e7eb;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    
+    .header {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    }
+    
+    .logo {
+      color: #3b82f6;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    .main-content {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #3b82f6;
+      margin-bottom: 10px;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      color: #93c5fd;
+    }
+    
+    .faq-item {
+      margin-bottom: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+    
+    .faq-question-container {
+      cursor: pointer;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(59, 130, 246, 0.6));
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .faq-question-container:hover {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(30, 58, 138, 0.8));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    }
+    
+    .faq-question {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    
+    .faq-text {
+      flex: 1;
+      margin-right: 20px;
+    }
+    
+    .faq-icon {
+      background: rgba(255, 255, 255, 0.9);
+      color: #3b82f6;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    
+    .faq-answer {
+      padding: 0 20px;
+      margin: 0;
+      background: rgba(15, 23, 42, 0.8);
+      border-left: 4px solid #3b82f6;
+      overflow: hidden;
+      transition: all 0.3s ease-in-out;
+      max-height: 0;
+      opacity: 0;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      opacity: 1;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    
+    .faq-item.active .faq-icon {
+      background: #ef4444;
+      color: white;
+      transform: rotate(45deg);
+    }
+    
+    .faq-answer p {
+      margin: 0;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+    
+    h2 {
+      color: #60a5fa;
+      margin: 40px 0 20px 0;
+      font-size: 1.5rem;
+      border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+      padding-bottom: 10px;
+    }
+    
+    .debug-info {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 20px 0;
+      font-family: monospace;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">PCSHOP - FAQ Test</div>
+  </header>
+
+  <main class="main-content">
+    <section class="hero">
+      <h1>Frequently Asked Questions</h1>
+      <p>Click on any question to expand/collapse the answer</p>
+    </section>
+
+    <div class="debug-info" id="debug-info">
+      <strong>Debug Info:</strong> Page loaded. Click FAQ items to test functionality.
+    </div>
+
+    <h2>General Questions</h2>
+    
+    <div class="faq-item" data-index="0">
+      <div class="faq-question-container">
+        <h3 class="faq-question">
+          <span class="faq-text">What payment methods do you accept?</span>
+          <span class="faq-icon">+</span>
+        </h3>
+      </div>
+      <div class="faq-answer">
+        <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. All payments are processed securely.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item" data-index="1">
+      <div class="faq-question-container">
+        <h3 class="faq-question">
+          <span class="faq-text">How long does shipping take?</span>
+          <span class="faq-icon">+</span>
+        </h3>
+      </div>
+      <div class="faq-answer">
+        <p>Standard shipping takes 3-5 business days. Express shipping (1-2 business days) is available for an additional fee.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item" data-index="2">
+      <div class="faq-question-container">
+        <h3 class="faq-question">
+          <span class="faq-text">Do you ship internationally?</span>
+          <span class="faq-icon">+</span>
+        </h3>
+      </div>
+      <div class="faq-answer">
+        <p>Yes, we ship to most countries worldwide. Shipping costs and delivery times vary by location.</p>
+      </div>
+    </div>
+
+    <h2>Product Questions</h2>
+    
+    <div class="faq-item" data-index="3">
+      <div class="faq-question-container">
+        <h3 class="faq-question">
+          <span class="faq-text">Are your products genuine and new?</span>
+          <span class="faq-icon">+</span>
+        </h3>
+      </div>
+      <div class="faq-answer">
+        <p>Absolutely! All our products are 100% genuine, brand new, and come with full manufacturer warranties.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item" data-index="4">
+      <div class="faq-question-container">
+        <h3 class="faq-question">
+          <span class="faq-text">Do you offer custom PC builds?</span>
+          <span class="faq-icon">+</span>
+        </h3>
+      </div>
+      <div class="faq-answer">
+        <p>Yes! We offer custom PC building services. Our technicians will assemble your system with the components you choose.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Completely standalone FAQ functionality
+    console.log('FAQ Standalone JavaScript loaded!');
+    
+    function updateDebugInfo(message) {
+      const debugElement = document.getElementById('debug-info');
+      const timestamp = new Date().toLocaleTimeString();
+      debugElement.innerHTML = `<strong>Debug Info:</strong> ${message} (${timestamp})`;
+      console.log(message);
+    }
+    
+    function toggleFAQ(element) {
+      updateDebugInfo('toggleFAQ function called!');
+      
+      const faqItem = element.closest('.faq-item');
+      const answer = faqItem.querySelector('.faq-answer');
+      const icon = faqItem.querySelector('.faq-icon');
+      const index = faqItem.getAttribute('data-index');
+      
+      updateDebugInfo(`FAQ item ${index} clicked`);
+      
+      // Toggle the active state
+      const isActive = faqItem.classList.contains('active');
+      
+      if (isActive) {
+        // Collapse the answer
+        answer.style.maxHeight = '0px';
+        answer.style.opacity = '0';
+        icon.textContent = '+';
+        faqItem.classList.remove('active');
+        updateDebugInfo(`FAQ item ${index} collapsed`);
+      } else {
+        // Expand the answer
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        answer.style.opacity = '1';
+        icon.textContent = '©';
+        faqItem.classList.add('active');
+        updateDebugInfo(`FAQ item ${index} expanded`);
+      }
+    }
+
+    // Initialize FAQ items
+    document.addEventListener('DOMContentLoaded', function() {
+      updateDebugInfo('DOM loaded, initializing FAQ...');
+      
+      const faqItems = document.querySelectorAll('.faq-item');
+      updateDebugInfo(`Found ${faqItems.length} FAQ items`);
+      
+      faqItems.forEach((item, index) => {
+        const answer = item.querySelector('.faq-answer');
+        const container = item.querySelector('.faq-question-container');
+        
+        // Set initial styles
+        answer.style.maxHeight = '0px';
+        answer.style.opacity = '0';
+        answer.style.overflow = 'hidden';
+        answer.style.transition = 'all 0.3s ease-in-out';
+        
+        // Add click event listener
+        container.addEventListener('click', function(e) {
+          updateDebugInfo(`Container ${index} clicked!`);
+          e.preventDefault();
+          e.stopPropagation();
+          toggleFAQ(this);
+        });
+        
+        // Add visual feedback
+        container.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-2px)';
+        });
+        
+        container.addEventListener('mouseleave', function() {
+          if (!item.classList.contains('active')) {
+            this.style.transform = 'translateY(0)';
+          }
+        });
+      });
+      
+      updateDebugInfo('FAQ initialization complete');
+      
+      // Test click simulation
+      setTimeout(() => {
+        updateDebugInfo('Testing click simulation...');
+        const firstContainer = document.querySelector('.faq-question-container');
+        if (firstContainer) {
+          updateDebugInfo('Simulating click on first FAQ item...');
+          firstContainer.click();
+        }
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
+
+
+

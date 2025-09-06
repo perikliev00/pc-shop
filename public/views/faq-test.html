@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ Test - PC SHOP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #e5e7eb;
+      padding: 20px;
+    }
+    
+    .faq-item {
+      margin-bottom: 16px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .faq-question-container {
+      cursor: pointer;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 58, 138, 0.6));
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .faq-question-container:hover {
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(59, 130, 246, 0.6));
+      border-color: rgba(59, 130, 246, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+    }
+    
+    .faq-question {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #e5e7eb;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    
+    .faq-text {
+      flex: 1;
+      margin-right: 16px;
+    }
+    
+    .faq-icon {
+      background: rgba(59, 130, 246, 0.9);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    
+    .faq-answer {
+      padding: 0 20px;
+      margin: 0;
+      background: rgba(15, 23, 42, 0.6);
+      border-left: 3px solid rgba(59, 130, 246, 0.5);
+      border-radius: 0 0 12px 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease-in-out;
+      max-height: 0;
+      opacity: 0;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      opacity: 1;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .faq-item.active .faq-icon {
+      background: rgba(239, 68, 68, 0.9);
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+  <h1>FAQ Test Page</h1>
+  <p>Click on the FAQ items below to test the accordion functionality:</p>
+  
+  <div class="faq-item">
+    <div class="faq-question-container">
+      <h3 class="faq-question">
+        <span class="faq-text">What payment methods do you accept?</span>
+        <span class="faq-icon">+</span>
+      </h3>
+    </div>
+    <div class="faq-answer">
+      <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. All payments are processed securely.</p>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question-container">
+      <h3 class="faq-question">
+        <span class="faq-text">How long does shipping take?</span>
+        <span class="faq-icon">+</span>
+      </h3>
+    </div>
+    <div class="faq-answer">
+      <p>Standard shipping takes 3-5 business days. Express shipping (1-2 business days) is available for an additional fee.</p>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question-container">
+      <h3 class="faq-question">
+        <span class="faq-text">Do you ship internationally?</span>
+        <span class="faq-icon">+</span>
+      </h3>
+    </div>
+    <div class="faq-answer">
+      <p>Yes, we ship to most countries worldwide. Shipping costs and delivery times vary by location.</p>
+    </div>
+  </div>
+
+  <script>
+    // Simple FAQ functionality test
+    function toggleFAQ(element) {
+      alert('FAQ clicked!'); // Test alert
+      console.log('toggleFAQ called on:', element);
+      
+      const faqItem = element.closest('.faq-item');
+      const answer = faqItem.querySelector('.faq-answer');
+      const icon = faqItem.querySelector('.faq-icon');
+      
+      console.log('FAQ item:', faqItem);
+      console.log('Answer element:', answer);
+      
+      // Toggle the active state
+      const isActive = faqItem.classList.contains('active');
+      
+      if (isActive) {
+        // Collapse the answer
+        faqItem.classList.remove('active');
+        icon.textContent = '+';
+        console.log('FAQ collapsed');
+      } else {
+        // Expand the answer
+        faqItem.classList.add('active');
+        icon.textContent = '©�';
+        console.log('FAQ expanded');
+      }
+    }
+
+    // Initialize FAQ items
+    document.addEventListener('DOMContentLoaded', function() {
+      alert('DOM loaded!'); // Test alert
+      console.log('DOM loaded, initializing FAQ...');
+      
+      const faqItems = document.querySelectorAll('.faq-item');
+      console.log('Found FAQ items:', faqItems.length);
+      
+      faqItems.forEach((item, index) => {
+        const container = item.querySelector('.faq-question-container');
+        
+        console.log(`FAQ item ${index}:`, item);
+        console.log(`Container ${index}:`, container);
+        
+        // Add click event listener
+        container.addEventListener('click', function(e) {
+          alert(`Container ${index} clicked!`); // Test alert
+          console.log(`Container ${index} clicked!`);
+          e.preventDefault();
+          e.stopPropagation();
+          toggleFAQ(this);
+        });
+      });
+      
+      console.log('FAQ initialization complete');
+    });
+  </script>
+</body>
+</html>
+
+
+
