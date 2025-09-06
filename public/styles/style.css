@@ -40,10 +40,15 @@ body {
 
 .main-content {
   flex: 1;
-  padding: 20px;
+  padding: 0;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Hero section now extends to full width */
+.main-content .hero {
+  margin-bottom: 20px;
 }
 
 /* --- Header & Navigation --- */
@@ -147,13 +152,15 @@ body {
 
 /* --- Modern Image Container Hero Section --- */
 .hero {
-  margin-bottom: 24px;
-  border-radius: 20px;
+  margin: 0;
+  border-radius: 0;
   overflow: hidden;
   position: relative;
   height: 600px;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  background: transparent;
+  box-shadow: none;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 .hero-image-container {
@@ -367,8 +374,16 @@ body {
 @media (max-width: 768px) {
   .hero {
     height: 460px; /* taller so animation fits */
-    border-radius: 16px;
-    padding: 15px;
+    border-radius: 0;
+    padding: 0;
+  }
+  
+  .main-content .hero {
+    margin-bottom: 20px;
+  }
+  
+  .cards-container {
+    padding: 0 15px;
   }
   
   .hero-title {
@@ -401,8 +416,16 @@ body {
 @media (max-width: 480px) {
   .hero {
     height: 350px;
-    border-radius: 12px;
-    padding: 12px;
+    border-radius: 0;
+    padding: 0;
+  }
+  
+  .main-content .hero {
+    margin-bottom: 20px;
+  }
+  
+  .cards-container {
+    padding: 0 12px;
   }
   
   .hero-title {
@@ -437,8 +460,16 @@ body {
 @media (max-width: 360px) {
   .hero {
     height: 320px;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 0;
+    padding: 0;
+  }
+  
+  .main-content .hero {
+    margin-bottom: 20px;
+  }
+  
+  .cards-container {
+    padding: 0 10px;
   }
   
   .hero-title {
@@ -568,6 +599,7 @@ body {
   margin: 20px auto;
   max-width: 1200px;
   flex-wrap: wrap;
+  padding: 0 20px;
 }
 
 .card {
@@ -1321,7 +1353,9 @@ form button:hover {
   .hero { padding: 40px 16px; text-align: center; word-wrap: break-word; overflow-wrap: break-word; }
   .heading-primary--main { font-size: 1.8rem; line-height: 1.2; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%; }
   .heading-primary--sub { font-size: 0.95rem; line-height: 1.4; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%; }
-  .main-content { padding: 20px 12px; max-width: 100%; overflow-x: hidden; }
+  .main-content { padding: 0; max-width: 100%; overflow-x: hidden; }
+  .main-content .hero { margin-bottom: 20px; }
+  .cards-container { padding: 0 12px; }
   .container { max-width: 100%; padding: 0; overflow-x: hidden; }
   .content-card { padding: 16px 12px; margin: 12px 0; max-width: 100%; overflow-x: hidden; word-wrap: break-word; }
   .content-card h2 { font-size: 1.4rem; margin-bottom: 12px; word-wrap: break-word; overflow-wrap: break-word; }
@@ -1361,7 +1395,8 @@ form button:hover {
   .hero { padding: 50px 30px; }
   .heading-primary--main { font-size: 2.5rem; }
   .heading-primary--sub { font-size: 1.1rem; }
-  .main-content { padding: 30px 20px; }
+  .main-content { padding: 0; }
+  .cards-container { padding: 0 20px; }
   .container { max-width: 100%; padding: 0 20px; }
   .content-card { padding: 24px 20px; margin: 20px 0; }
   .footer { padding: 50px 30px; }
@@ -1379,7 +1414,8 @@ form button:hover {
   .hero { padding: 60px 40px; }
   .heading-primary--main { font-size: 3rem; }
   .heading-primary--sub { font-size: 1.2rem; }
-  .main-content { padding: 40px 30px; }
+  .main-content { padding: 0; }
+  .cards-container { padding: 0 30px; }
   .container { max-width: 90%; padding: 0 30px; }
   .content-card { padding: 30px 25px; margin: 25px 0; }
   .footer { padding: 60px 40px; }
@@ -1397,7 +1433,8 @@ form button:hover {
   .hero { padding: 80px 50px; }
   .heading-primary--main { font-size: 3.5rem; }
   .heading-primary--sub { font-size: 1.3rem; }
-  .main-content { padding: 50px 40px; }
+  .main-content { padding: 0; }
+  .cards-container { padding: 0 40px; }
   .container { max-width: 1200px; padding: 0 40px; }
   .content-card { padding: 40px 35px; margin: 30px 0; }
   .footer { padding: 80px 50px; }
@@ -1411,7 +1448,8 @@ form button:hover {
   .hero { padding: 30px 20px; }
   .heading-primary--main { font-size: 2rem; }
   .heading-primary--sub { font-size: 1rem; }
-  .main-content { padding: 20px 16px; }
+  .main-content { padding: 0; }
+  .cards-container { padding: 0 16px; }
   .footer { padding: 30px 20px; }
 }
 

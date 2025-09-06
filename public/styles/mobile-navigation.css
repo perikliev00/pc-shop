@@ -75,7 +75,8 @@ body.mobile-nav-open {
   max-height: 86vh; /* Make container higher on mobile */
   text-align: center;
   transition: all 0.25s ease-out;
-  overflow: auto; /* Allow scroll if content exceeds viewport */
+  overflow: visible; /* Allow borders to be visible */
+  padding: 20px 0; /* Add padding to prevent border cropping */
 }
 
 .mobile-nav-overlay.active .mobile-nav-content {
@@ -127,6 +128,7 @@ body.mobile-nav-open {
 
 .mobile-nav-links li {
   margin-bottom: 16px;
+  padding: 0 2px; /* Add small padding to prevent border cropping */
 }
 
 .mobile-nav-links a {
@@ -142,6 +144,8 @@ body.mobile-nav-open {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box; /* Ensure borders are included in width calculation */
+  width: 100%; /* Ensure full width within container */
 }
 
 .mobile-nav-links a::before {
@@ -185,8 +189,8 @@ body.mobile-nav-open {
 /* Close Button */
 .mobile-nav-close {
   position: absolute;
-  top: 30px;
-  right: 30px;
+  top: 15px;
+  right: 15px;
   width: 50px;
   height: 50px;
   background: linear-gradient(135deg, #ef4444, #dc2626);
@@ -231,6 +235,8 @@ body.mobile-nav-open {
   }
   
   .mobile-nav-close {
+    top: 10px;
+    right: 10px;
     width: 45px;
     height: 45px;
     font-size: 20px;

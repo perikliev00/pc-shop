@@ -87,23 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
       }
 
-      try {
-        const response = await fetch('/session-status', {
-          method: 'GET',
-          credentials: 'include'
-        });
-        const data = await response.json();
-        console.log(data);
-        if (!data.isLoggedIn) {
-          alert('You are not logged in. Please log in to proceed.');
-          return;
-        }
-      } catch (err) {
-        console.error('Error checking session status:', err);
-        alert('Unable to verify login status.');
-        return;
-      }
-
+      // Both logged-in and guest users can proceed to checkout
       window.location.href = '/order-details';
     });
   }
@@ -192,11 +176,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       if (!response.ok) {
         console.error('Cart request failed:', response.status);
-        if (response.status === 401) {
-          cartItemsContainer.innerHTML = '<p>Please log in to see your cart.</p>';
-        } else {
-          cartItemsContainer.innerHTML = '<p>Your cart is empty or unauthorized.</p>';
-        }
+        cartItemsContainer.innerHTML = '<p>Your cart is empty or there was an error loading it.</p>';
         cartTotalEl.textContent = '0.00';
         cartItemsData = [];
         return;
@@ -205,11 +185,26 @@ document.addEventListener('DOMContentLoaded', async () => {
       const data = await response.json();
       cartItemsData = data.cart; 
       renderCartItems(cartItemsData);
+      
+      // Update checkout button based on user type
+      updateCheckoutButton(data.isGuest);
     } catch (err) {
       console.error('Error fetching cart:', err);
       cartItemsContainer.innerHTML = '<p>Unable to fetch cart data.</p>';
       cartTotalEl.textContent = '0.00';
       cartItemsData = [];
+    }
+  }
+
+  function updateCheckoutButton(isGuest) {
+    if (checkoutButton) {
+      if (isGuest) {
+        checkoutButton.textContent = 'Proceed to Checkout (Guest)';
+        checkoutButton.title = 'Continue as guest to place order';
+      } else {
+        checkoutButton.textContent = 'Proceed to Checkout';
+        checkoutButton.title = 'Continue to place order';
+      }
     }
   }
 
