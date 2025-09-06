@@ -1,0 +1,60 @@
+//   ////my-ecommerce-app
+// ├── config
+// │   ├── db.js              // Конфигурация за свързване с MongoDB
+// │   ├── stripe.js          // Конфигурация за Stripe
+// │   └── sendGrid.js        // Конфигурация за SendGrid
+// ├── controllers
+// │   ├── authController.js  // Регистрация, логване, ресет на парола
+// │   ├── userController.js  // CRUD операции за профила на потребителя
+// │   ├── productController.js  // CRUD операции за продукти
+// │   ├── orderController.js    // Поръчки, плащания и т.н.
+// │   └── ...
+// ├── middlewares
+// │   ├── authMiddleware.js  // Проверки за JWT, роли и т.н.
+// │   ├── errorHandler.js    // Централизирана обработка на грешки
+// │   └── ...
+// ├── models
+// │   ├── User.js            // Модел за потребител
+// │   ├── .js         // Модел за продукт
+// │   ├── Order.js           // Модел за поръчка
+// │   └── ...
+// ├── routes
+// │   ├── authRoutes.js
+// │   ├── userRoutes.js
+// │   ├── productRoutes.js
+// │   ├── orderRoutes.js
+// │   └── ...
+// ├── uploads               // Папка, в която се качват снимките (ако ги пазите локално)
+// ├── views                 // Ако използвате статични HTML файлове или шаблони
+// ├── .env                  // Съдържа чувствителна информация (API ключове, DB url и т.н.)
+// ├── package.json
+// ├── server.js             // Главен файл на сървъра
+// └── ...
+// (По желание) Свързване към MongoDB, ако използвате база
+// const connectDB = require('./config/db');
+// connectDB();
+
+// const app = express();
+
+// // Мидълуеър, за да можем да обработваме JSON body при POST/PUT заявки
+// app.use(express.json());
+
+// // === СТАТИЧНИ ФАЙЛОВЕ ===
+// // Казваме на Express, че папката "views" съдържа статичните файлове (HTML, CSS, JS).
+// // Така ще можете директно да зареждате /style.css, /index.html и т.н.
+// app.use(express.static(path.join(__dirname, 'views')));
+
+// // === API РУТОВЕ ===
+// const userRoutes = require('./routes/userRoutes');
+// app.use('/api/users', userRoutes);
+
+// // Рут за "/" – ще зареди директно "index.html" от "views"
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'views', 'index.html'));
+// });
+
+// // Стартираме сървъра
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`Server started on port ${PORT}`);
+// });

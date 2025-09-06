@@ -56,7 +56,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 app.use(
-  session({ secret: 'my secret', resave: false, saveUninitialized: false,store:store })
+  session({ secret: 'my secret', resave: false, saveUninitialized: true,store:store })
 )
 
 
