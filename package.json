@@ -39,6 +39,5 @@
     "sendgrid": "^5.2.3"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
   }
 }
