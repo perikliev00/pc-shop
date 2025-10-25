@@ -1471,6 +1471,19 @@ form button:hover {
   .body-wrapper { background: linear-gradient(135deg, #0b1020 0%, #1e293b 100%); }
 }
 
+/* Disable animations for section pages (not home page) */
+body:not(.home-page) .hero-title {
+  animation: none !important;
+}
+
+body:not(.home-page) .hero-subtitle {
+  animation: none !important;
+}
+
+body:not(.home-page) .hero-description {
+  animation: none !important;
+}
+
 /* Print styles */
 @media print {
   .header, .footer, .nav-toggle { display: none; }

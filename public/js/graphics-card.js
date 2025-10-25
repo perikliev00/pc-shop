@@ -70,11 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return res.json();
       })
       .then((data) => {
-        // 1) Hero section
-        const heroTitle = document.querySelector('.hero h1');
-        const heroDesc = document.querySelector('.hero p');
-        heroTitle.textContent = data['description-title'] || 'No Title';
-        heroDesc.textContent = data.description || 'No description.';
+        // 1) Hero section - DISABLED FOR SECTION PAGES
+        // const heroTitle = document.querySelector('.hero h1');
+        // const heroDesc = document.querySelector('.hero p');
+        // heroTitle.textContent = data['description-title'] || 'No Title';
+        // heroDesc.textContent = data.description || 'No description.';
   
         // 2) Продукти
         renderProducts(data.products);

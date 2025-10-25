@@ -112,10 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return res.json();
       })
       .then(data => {
-        const heroTitle = document.querySelector('.hero h1');
-        const heroDesc = document.querySelector('.hero p');
-        if (heroTitle) heroTitle.textContent = data['description-title'] || 'No Title';
-        if (heroDesc) heroDesc.textContent = data.description || 'No description.';
+        // Hero text updates - DISABLED TO SHOW ORIGINAL TEXT IMMEDIATELY
+        // const heroTitle = document.querySelector('.hero h1');
+        // const heroDesc = document.querySelector('.hero p');
+        // if (heroTitle) heroTitle.textContent = data['description-title'] || 'No Title';
+        // if (heroDesc) heroDesc.textContent = data.description || 'No description.';
 
         renderProducts(data.products);
         renderPagination(data);

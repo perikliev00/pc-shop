@@ -95,11 +95,11 @@ function fetchPage(page = 1) {
       return res.json();
     })
     .then((data) => {
-      // 1) Hero: заглавие + описание
-      const heroTitle = document.querySelector('.hero h1');
-      const heroDesc = document.querySelector('.hero p');
-      if (heroTitle) heroTitle.textContent = data['description-title'] || 'No Title';
-      if (heroDesc) heroDesc.textContent = data.description || 'No description';
+      // 1) Hero: заглавие + описание - DISABLED FOR SECTION PAGES
+      // const heroTitle = document.querySelector('.hero h1');
+      // const heroDesc = document.querySelector('.hero p');
+      // if (heroTitle) heroTitle.textContent = data['description-title'] || 'No Title';
+      // if (heroDesc) heroDesc.textContent = data.description || 'No description';
 
       // 2) Продукти
       renderProducts(data.products);
