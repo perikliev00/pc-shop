@@ -37,18 +37,7 @@
         <main class="main-content">
             <section class="order-details">
                 <h1>Order Details</h1>
-                
-                <!-- Order Summary Section -->
-                <div class="order-summary">
-                    <h2>Order Summary</h2>
-                    <div id="userType" class="user-type"></div>
-                    <div id="orderItems" class="order-items"></div>
-                    <div class="order-total">
-                        <strong>Total: $<span id="orderTotal">0.00</span></strong>
-                    </div>
-                </div>
-                
-                <form id="orderForm" method="post" action="/api/order">
+                <form id="orderForm" method="post" action="/order">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" required />
 

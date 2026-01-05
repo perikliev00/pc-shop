@@ -70,11 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return res.json();
       })
       .then((data) => {
-        // 1) Hero section - DISABLED FOR SECTION PAGES
+        // Skip updating hero text - keep the static text from HTML
         // const heroTitle = document.querySelector('.hero h1');
         // const heroDesc = document.querySelector('.hero p');
-        // heroTitle.textContent = data['description-title'] || 'No Title';
-        // heroDesc.textContent = data.description || 'No description.';
+        // if (heroTitle && data['description-title']) heroTitle.textContent = data['description-title'];
+        // if (heroDesc && data.description) heroDesc.textContent = data.description;
   
         // 2) Продукти
         renderProducts(data.products);

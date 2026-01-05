@@ -57,11 +57,11 @@ async function fetchPage(page = 1, skipPush = false) {
       return res.json();
     })
     .then((data) => {
-      // 1) Update hero - DISABLED FOR SECTION PAGES
+      // Skip updating hero text - keep the static text from HTML
       // const heroTitle = document.querySelector('.hero h1');
       // const heroDesc = document.querySelector('.hero p');
-      // if (heroTitle) heroTitle.textContent = data['description-title'] || 'No Title';
-      // if (heroDesc) heroDesc.textContent = data.description || 'No description';
+      // if (heroTitle && data['description-title']) heroTitle.textContent = data['description-title'];
+      // if (heroDesc && data.description) heroDesc.textContent = data.description;
 
       renderProducts(data.products);
 

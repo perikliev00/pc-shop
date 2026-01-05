@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const checkoutButton = document.querySelector('.checkout-button');
   if (checkoutButton) {
-    checkoutButton.addEventListener('click', async (e) => {
+    checkoutButton.addEventListener('click', (e) => {
       e.preventDefault(); 
 
       if (!cartItemsData || cartItemsData.length === 0) {
@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
       }
 
-      // Both logged-in and guest users can proceed to checkout
       window.location.href = '/order-details';
     });
   }
@@ -176,7 +175,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       if (!response.ok) {
         console.error('Cart request failed:', response.status);
-        cartItemsContainer.innerHTML = '<p>Your cart is empty or there was an error loading it.</p>';
+        cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
         cartTotalEl.textContent = '0.00';
         cartItemsData = [];
         return;
@@ -185,26 +184,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       const data = await response.json();
       cartItemsData = data.cart; 
       renderCartItems(cartItemsData);
-      
-      // Update checkout button based on user type
-      updateCheckoutButton(data.isGuest);
     } catch (err) {
       console.error('Error fetching cart:', err);
       cartItemsContainer.innerHTML = '<p>Unable to fetch cart data.</p>';
       cartTotalEl.textContent = '0.00';
       cartItemsData = [];
-    }
-  }
-
-  function updateCheckoutButton(isGuest) {
-    if (checkoutButton) {
-      if (isGuest) {
-        checkoutButton.textContent = 'Proceed to Checkout (Guest)';
-        checkoutButton.title = 'Continue as guest to place order';
-      } else {
-        checkoutButton.textContent = 'Proceed to Checkout';
-        checkoutButton.title = 'Continue to place order';
-      }
     }
   }
 
