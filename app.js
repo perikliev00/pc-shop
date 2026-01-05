@@ -1,8 +1,12 @@
-const express = require('express');
+const path = require('path');
 const fs = require('fs');
+require('dotenv').config({ path: path.join(__dirname, 'config', '.env') });
+// #region agent log
+fetch('http://127.0.0.1:7243/ingest/30570f69-6cf0-46cb-9700-debd61109577',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'post-fix',hypothesisId:'H1',location:'app.js:dotenv',message:'dotenv config completed (config/.env path)',data:{cwd:process.cwd(),rootEnvExists:fs.existsSync(path.join(process.cwd(),'.env')),configEnvExists:fs.existsSync(path.join(__dirname,'config','.env')),hasSendgrid:!!process.env.SENDGRID_API_KEY,sendgridLen:(process.env.SENDGRID_API_KEY||'').length,hasMongoUser:!!process.env.MONGO_USER,mongoUserLen:(process.env.MONGO_USER||'').length,hasMongoPassword:!!process.env.MONGO_PASSWORD,mongoPasswordLen:(process.env.MONGO_PASSWORD||'').length,hasSessionSecret:!!process.env.SESSION_SECRET,sessionSecretLen:(process.env.SESSION_SECRET||'').length,hasJwtSecret:!!process.env.JWT_SECRET,jwtSecretLen:(process.env.JWT_SECRET||'').length,port:process.env.PORT||null,nodeEnv:process.env.NODE_ENV||null},timestamp:Date.now()})}).catch(()=>{});
+// #endregion
+const express = require('express');
 const https = require('https');
 const mongoose = require('mongoose');
-const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
@@ -21,7 +25,6 @@ const authRoutes = require('./routes/user/authRoutes');
 const authDataRoutes = require('./routes/data/authRoutes');
 const isAuth = require('./middlewares/isAuth');
 const sgMail = require('@sendgrid/mail');
-require('dotenv').config();
 const helmet = require('helmet');
 const morgan = require('morgan');
 const compression = require('compression');
@@ -29,10 +32,19 @@ const mongoUser = process.env.MONGO_USER;
 const mongoPassword = process.env.MONGO_PASSWORD;
 const sendGridKey = process.env.SENDGRID_API_KEY
 
+// #region agent log
+fetch('http://127.0.0.1:7243/ingest/30570f69-6cf0-46cb-9700-debd61109577',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H2',location:'app.js:sendgrid',message:'before sgMail.setApiKey',data:{hasSendgrid:!!process.env.SENDGRID_API_KEY,sendgridLen:(process.env.SENDGRID_API_KEY||'').length},timestamp:Date.now()})}).catch(()=>{});
+// #endregion
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// #region agent log
+fetch('http://127.0.0.1:7243/ingest/30570f69-6cf0-46cb-9700-debd61109577',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H2',location:'app.js:sendgrid2',message:'after sgMail.setApiKey',data:{called:true},timestamp:Date.now()})}).catch(()=>{});
+// #endregion
 
 const MONGODB_URI =
   `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@portfolio.oaldo.mongodb.net/test?retryWrites=true&w=majority&tls=true&tlsAllowInvalidCertificates=true`;
+// #region agent log
+fetch('http://127.0.0.1:7243/ingest/30570f69-6cf0-46cb-9700-debd61109577',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H3',location:'app.js:mongoUri',message:'mongodb uri composed',data:{uriHasUndefined:MONGODB_URI.includes('undefined'),mongoUserLen:(process.env.MONGO_USER||'').length,mongoPasswordLen:(process.env.MONGO_PASSWORD||'').length},timestamp:Date.now()})}).catch(()=>{});
+// #endregion
 
 const app = express();
 const port = 3000;
@@ -56,7 +68,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 app.use(
-  session({ secret: 'my secret', resave: false, saveUninitialized: true,store:store })
+  session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false,store:store })
 )
 
 
@@ -179,9 +191,11 @@ app.use(cartDataRoutes);
 mongoose
   .connect(MONGODB_URI)
   .then(result => {
-    // https.createServer({key: privateKey, cert:certificate },app).listen(process.env.PORT || 3000)
-    app.listen(process.env.PORT || 8000);
+      app.listen(process.env.PORT || 8000);
   })
   .catch((err) => {
+    // #region agent log
+    fetch('http://127.0.0.1:7243/ingest/30570f69-6cf0-46cb-9700-debd61109577',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H4',location:'app.js:mongoCatch',message:'mongoose.connect failed',data:{name:err?.name||null,code:err?.code||null,message:(err?.message||'').slice(0,140)},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     console.error('MongoDB connection error:', err);
   });
