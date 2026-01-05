@@ -1,4 +1,7 @@
 // controllers/user/paymentController.js
+// #region agent log
+fetch('http://127.0.0.1:7243/ingest/30570f69-6cf0-46cb-9700-debd61109577',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H5',location:'paymentController.js:top',message:'module loaded, env snapshot',data:{hasStripeKey:!!process.env.STRIPE_SECRET_KEY,stripeKeyLen:(process.env.STRIPE_SECRET_KEY||'').length,hasSendgrid:!!process.env.SENDGRID_API_KEY,sendgridLen:(process.env.SENDGRID_API_KEY||'').length,nodeEnv:process.env.NODE_ENV||null},timestamp:Date.now()})}).catch(()=>{});
+// #endregion
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);

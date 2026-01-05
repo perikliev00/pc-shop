@@ -42,6 +42,15 @@ exports.login = async (req, res) => {
     }
     req.session.isLoggedIn = true;
     req.session.user = user;
+    if (user.cart && user.cart.items) {
+      req.session.cart = user.cart.items.map(item => ({
+        title: item.title,
+        price: item.price,
+        quantity: item.quantity
+      }));
+    } else {
+      req.session.cart = [];
+    }
     req.session.save(err => {
       if (err) {
         console.error('Session save error:', err);
