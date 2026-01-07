@@ -10,6 +10,7 @@ const {
 
 exports.postCart = async (req, res, next) => {
   try {
+    const productId = req.body.productId;
     const productTitle = req.body.productTitle;
     const productPrice = normalizePrice(req.body.price);
 
@@ -17,12 +18,12 @@ exports.postCart = async (req, res, next) => {
       return res.redirect('/cart');
     }
 
-    addItemToSessionCart(req, productTitle, productPrice);
+    addItemToSessionCart(req, productId, productTitle, productPrice);
 
     if (req.session.user && req.session.user._id) {
       const user = await User.findById(req.session.user._id);
       if (user) {
-        const updatedUser = await user.addToCart({ title: productTitle, price: productPrice });
+        const updatedUser = await user.addToCart({ _id: productId, title: productTitle, price: productPrice });
         setSessionCart(req, updatedUser.cart.items);
       }
     }

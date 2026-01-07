@@ -1,6 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// NEW: order item schema (no subdocument _id needed)
+const orderItemSchema = new Schema(
+  {
+    productId: { type: Schema.Types.ObjectId, required: true },
+    title: { type: String, required: true },
+    quantity: { type: Number, required: true },
+    price: { type: Number, required: true },
+  },
+  { _id: false }
+);
+
 const orderSchema = new Schema({
   name: {
     type: String,
@@ -25,26 +36,8 @@ const orderSchema = new Schema({
   notes: {
     type: String,
   },
-  items: [
-    {
-      title: {
-        type: String,
-        required: true
-      },
-      quantity: {
-        type: Number,
-        required: true
-      },
-      price: {
-        type: Number,
-        required: true
-      },
-      _id: {
-        type: Schema.Types.ObjectId,
-        required: true
-      }
-    }
-  ],
+  // CHANGED: items now use productId (not _id)
+  items: [orderItemSchema],
   totalPrice: {
     type: Number,
     required: true
@@ -52,8 +45,9 @@ const orderSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
-  },{
+  },
+  // REMOVED: custom required _id field (let mongoose generate it)
+}, {
   collection: 'Orders'
 });
 

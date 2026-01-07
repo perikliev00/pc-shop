@@ -14,6 +14,7 @@ exports.postOrder = async (req, res, next) => {
 
     if ((!cartItems || cartItems.length === 0) && user && user.cart && user.cart.items) {
       cartItems = user.cart.items.map(item => ({
+        productId: item.productId,
         title: item.title,
         price: item.price,
         quantity: item.quantity,
@@ -25,7 +26,20 @@ exports.postOrder = async (req, res, next) => {
       return res.redirect('/cart');
     }
 
-    const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    const items = cartItems.map(item => ({
+      productId: item.productId || item._id, // CHANGED
+      title: item.title,
+      price: Number(item.price),
+      quantity: Number(item.quantity),
+    }));
+
+    // NEW: block order if any item is missing productId
+    if (items.some(i => !i.productId)) {
+      console.error('Order blocked: cart item missing productId', cartItems);
+      return res.redirect('/cart');
+    }
+
+    const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0);
 
     const orderDetails = {
       name: req.body.name,
@@ -34,7 +48,7 @@ exports.postOrder = async (req, res, next) => {
       address: req.body.address,
       postalCode: req.body.postcode,
       notes: req.body.notes,
-      items: cartItems,
+      items,
       totalPrice,
     };
 

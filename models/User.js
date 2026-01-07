@@ -8,6 +8,9 @@ const Schema = mongoose.Schema;
         cart: {
             items: [
                 {
+                    // Store the actual product id so we can later create Orders that require items._id.
+                    // Not required to avoid breaking existing user documents that already have cart items.
+                    productId: { type: Schema.Types.ObjectId, required: false },
                     title: { type: String, required: true },
                     quantity: { type: Number, required: true },
                     price : {type: Number, required: true},
@@ -18,7 +21,11 @@ const Schema = mongoose.Schema;
     }, { collection: 'users' }
 )
 userSchema.methods.addToCart = function(product) {
+    const incomingProductId = product && (product.productId || product._id);
     const cartProductIndex = this.cart.items.findIndex(cp => {
+                    if (incomingProductId && cp.productId) {
+                        return cp.productId.toString() === incomingProductId.toString();
+                    }
                     return cp.title.toString() === product.title.toString();
                 })
                 let newQuantity= 1;
@@ -27,8 +34,16 @@ userSchema.methods.addToCart = function(product) {
                 if(cartProductIndex >=0) {
                     newQuantity=this.cart.items[cartProductIndex].quantity + 1;
                     updatedCartItems[cartProductIndex].quantity = newQuantity;
+                    if (!updatedCartItems[cartProductIndex].productId && incomingProductId) {
+                        updatedCartItems[cartProductIndex].productId = incomingProductId;
+                    }
                 } else {
-                    updatedCartItems.push({title:product.title,quantity: newQuantity,price:product.price});
+                    updatedCartItems.push({
+                        productId: incomingProductId,
+                        title: product.title,
+                        quantity: newQuantity,
+                        price: product.price
+                    });
                 }
                 const updatedCart = {
                     items: updatedCartItems

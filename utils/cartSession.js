@@ -13,6 +13,8 @@ function normalizePrice(value) {
 
 function toPlainItem(item = {}) {
   return {
+    // Prefer explicit productId; fall back to _id when we're passed a product document.
+    productId: item.productId || item._id,
     title: item.title,
     price: normalizePrice(item.price),
     quantity: item.quantity && item.quantity > 0 ? item.quantity : 1
@@ -35,14 +37,17 @@ function setSessionCart(req, items = []) {
   return plainItems;
 }
 
-function addItemToSessionCart(req, title, price) {
+function addItemToSessionCart(req, productId, title, price) {
   const cart = ensureSessionCart(req);
   const normalizedPrice = normalizePrice(price);
   const existing = cart.find(item => item.title === title);
   if (existing) {
     existing.quantity += 1;
+    if (!existing.productId && productId) {
+      existing.productId = productId;
+    }
   } else {
-    cart.push({ title, price: normalizedPrice, quantity: 1 });
+    cart.push({ productId, title, price: normalizedPrice, quantity: 1 });
   }
   return cart;
 }
